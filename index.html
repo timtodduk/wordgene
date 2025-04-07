@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Business Domain Generator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Disulo - Business Domain Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -14,29 +15,74 @@
         body {
             background: #f5f7fb;
             min-height: 100vh;
-            padding: 40px 20px;
+            color: #2d3748;
+            line-height: 1.6;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
         h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
             color: #2d3748;
-            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #718096;
             margin-bottom: 30px;
-            font-size: 2.5em;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .feature-card p {
+            color: #718096;
+        }
+
+        .generator-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 60px;
         }
 
         .controls {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
             display: flex;
             gap: 15px;
+            margin-bottom: 30px;
         }
 
         select {
@@ -75,10 +121,9 @@
         }
 
         .word {
-            background: white;
+            background: #f8fafc;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -119,23 +164,148 @@
             padding: 20px;
             color: #718096;
         }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #718096;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .contact {
+            margin-top: 20px;
+        }
+
+        .contact a {
+            color: #4299e1;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .nav-links a {
+            color: #4299e1;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #ebf8ff;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #718096;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #4299e1;
+        }
+
+        .github-download {
+            margin-top: 20px;
+        }
+
+        .github-download a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2d3748;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .github-download a:hover {
+            background: #1a202c;
+        }
+
+        .github-download i {
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Domain Name Generator</h1>
-        <div class="controls">
-            <select id="businessType">
-                <option value="tech">Technology & Software</option>
-                <option value="food">Food & Restaurant</option>
-                <option value="health">Health & Wellness</option>
-                <option value="finance">Finance & Banking</option>
-                <option value="retail">Retail & Shopping</option>
-            </select>
-            <button onclick="generateWords()">Generate Names</button>
-        </div>
-        <div id="results" class="results"></div>
+        <header>
+            <h1>Disulo</h1>
+            <p class="subtitle">Generate the perfect domain name for your business</p>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="keywords.html">Keyword Tools</a>
+                <a href="scraper.html">Web Scraper</a>
+                <a href="shortener.html">URL Shortener</a>
+                <a href="about.html">About</a>
+            </div>
+        </header>
+
+        <section class="features">
+            <div class="feature-card">
+                <h3>Domain Name Generation</h3>
+                <p>Generate unique and creative domain names tailored to your business needs. Our algorithm creates memorable and brandable names.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Keyword Scraping</h3>
+                <p>Extract relevant keywords from various sources to ensure your domain name is optimized for search engines and your target audience.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Keyword Analysis</h3>
+                <p>Analyze and process keywords to generate better domain name suggestions that align with your business goals.</p>
+            </div>
+        </section>
+
+        <section class="generator-section">
+            <h2>Generate Your Domain Name</h2>
+            <div class="controls">
+                <select id="businessType">
+                    <option value="tech">Technology & Software</option>
+                    <option value="food">Food & Restaurant</option>
+                    <option value="health">Health & Wellness</option>
+                    <option value="finance">Finance & Banking</option>
+                    <option value="retail">Retail & Shopping</option>
+                </select>
+                <button onclick="generateWords()">Generate Names</button>
+            </div>
+            <div id="results" class="results"></div>
+        </section>
     </div>
+
+    <footer>
+        <p>© 2025 Disulo. All rights reserved.</p>
+        <p class="contact">Contact: <a href="mailto:tim@adaywithtim.com">tim@adaywithtim.com</a></p>
+        <div class="social-links">
+            <a href="https://twitter.com/adaywithtim" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-twitter"></i> @adaywithtim
+            </a>
+        </div>
+        <div class="github-download">
+            <a href="https://github.com/timtodduk/wordgene" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i> Download from GitHub
+            </a>
+        </div>
+    </footer>
 
     <script>
     async function generateWords() {

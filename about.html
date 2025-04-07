@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Disulo - About</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            min-height: 100vh;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #718096;
+            margin-bottom: 30px;
+        }
+
+        .about-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .about-section h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .about-section p {
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+
+        .donate-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .donate-section h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .donate-section p {
+            color: #4a5568;
+            margin-bottom: 30px;
+        }
+
+        .paypal-button {
+            display: inline-block;
+            background: #0070ba;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .paypal-button:hover {
+            background: #005ea6;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .nav-links a {
+            color: #4299e1;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #ebf8ff;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #718096;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #4299e1;
+        }
+
+        .github-download {
+            margin-top: 20px;
+        }
+
+        .github-download a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2d3748;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .github-download a:hover {
+            background: #1a202c;
+        }
+
+        .github-download i {
+            font-size: 1.2em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #718096;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+        }
+
+        .contact {
+            margin-top: 20px;
+        }
+
+        .contact a {
+            color: #4299e1;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Disulo</h1>
+            <p class="subtitle">About Our Platform</p>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="keywords.html">Keyword Tools</a>
+                <a href="scraper.html">Web Scraper</a>
+                <a href="shortener.html">URL Shortener</a>
+                <a href="about.html">About</a>
+            </div>
+        </header>
+
+        <section class="about-section">
+            <h2>About Disulo</h2>
+            <p>Disulo is a comprehensive platform designed to help businesses and individuals generate domain names, analyze keywords, and gather business information. Our tools are built with simplicity and effectiveness in mind, making it easy for anyone to find the perfect domain name or gather valuable business insights.</p>
+            
+            <h2>Our Mission</h2>
+            <p>We aim to provide powerful, easy-to-use tools that help businesses establish their online presence. Whether you're looking for the perfect domain name, analyzing keywords for SEO, or gathering business information, Disulo has you covered.</p>
+        </section>
+
+        <section class="donate-section">
+            <h2>Support Our Development</h2>
+            <p>If you find our tools helpful, consider supporting our development through a donation. Your contribution helps us maintain and improve the platform.</p>
+            <form action="https://www.paypal.com/donate" method="post" target="_blank">
+                <input type="hidden" name="business" value="tim@soundsandstage.com">
+                <input type="hidden" name="no_recurring" value="0">
+                <input type="hidden" name="currency_code" value="USD">
+                <button type="submit" class="paypal-button">
+                    <i class="fab fa-paypal"></i> Donate with PayPal
+                </button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 Disulo. All rights reserved.</p>
+        <p class="contact">Contact: <a href="mailto:tim@adaywithtim.com">tim@adaywithtim.com</a></p>
+        <div class="social-links">
+            <a href="https://twitter.com/adaywithtim" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-twitter"></i> @adaywithtim
+            </a>
+        </div>
+        <div class="github-download">
+            <a href="https://github.com/timtodduk/wordgene" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i> Download from GitHub
+            </a>
+        </div>
+    </footer>
+</body>
+</html> 

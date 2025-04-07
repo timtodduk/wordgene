@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>UK Business Email Scraper</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Disulo - Web Scraper</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -152,10 +153,104 @@
                 width: 100%;
             }
         }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .nav-links a {
+            color: #4299e1;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #ebf8ff;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #718096;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #4299e1;
+        }
+
+        .github-download {
+            margin-top: 20px;
+        }
+
+        .github-download a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2d3748;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .github-download a:hover {
+            background: #1a202c;
+        }
+
+        .github-download i {
+            font-size: 1.2em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #718096;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+        }
+
+        .contact {
+            margin-top: 20px;
+        }
+
+        .contact a {
+            color: #4299e1;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <header>
+            <h1>Disulo</h1>
+            <p class="subtitle">Web Scraping Tools</p>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="keywords.html">Keyword Tools</a>
+                <a href="scraper.html">Web Scraper</a>
+                <a href="shortener.html">URL Shortener</a>
+                <a href="about.html">About</a>
+            </div>
+        </header>
+        
         <h1>UK Business Email Scraper</h1>
         
         <div class="filters">
@@ -191,6 +286,21 @@
     </div>
 
     <a id="downloadLink"></a>
+
+    <footer>
+        <p>© 2025 Disulo. All rights reserved.</p>
+        <p class="contact">Contact: <a href="mailto:tim@adaywithtim.com">tim@adaywithtim.com</a></p>
+        <div class="social-links">
+            <a href="https://twitter.com/adaywithtim" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-twitter"></i> @adaywithtim
+            </a>
+        </div>
+        <div class="github-download">
+            <a href="https://github.com/timtodduk/wordgene" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i> Download from GitHub
+            </a>
+        </div>
+    </footer>
 
     <script>
         let businessData = [];
