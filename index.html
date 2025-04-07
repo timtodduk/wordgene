@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Business Domain Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        select {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        select:focus {
+            border-color: #4299e1;
+        }
+
+        button {
+            background: #4299e1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        button:hover {
+            background: #3182ce;
+            transform: translateY(-1px);
+        }
+
+        .results {
+            display: grid;
+            gap: 15px;
+        }
+
+        .word {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+
+        .word:hover {
+            transform: translateY(-2px);
+        }
+
+        .available {
+            border-left: 4px solid #48bb78;
+        }
+
+        .taken {
+            border-left: 4px solid #f56565;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .available .status-badge {
+            background: #f0fff4;
+            color: #48bb78;
+        }
+
+        .taken .status-badge {
+            background: #fff5f5;
+            color: #f56565;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #718096;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Domain Name Generator</h1>
+        <div class="controls">
+            <select id="businessType">
+                <option value="tech">Technology & Software</option>
+                <option value="food">Food & Restaurant</option>
+                <option value="health">Health & Wellness</option>
+                <option value="finance">Finance & Banking</option>
+                <option value="retail">Retail & Shopping</option>
+            </select>
+            <button onclick="generateWords()">Generate Names</button>
+        </div>
+        <div id="results" class="results"></div>
+    </div>
+
+    <script>
+    async function generateWords() {
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = '<div class="loading">Generating domain names...</div>';
+        
+        const type = document.getElementById('businessType').value;
+        try {
+            const response = await fetch(`generate.php?type=${type}`);
+            const words = await response.json();
+            resultsDiv.innerHTML = '';
+            
+            for (const word of words) {
+                const div = document.createElement('div');
+                div.className = `word ${word.available ? 'available' : 'taken'}`;
+                div.innerHTML = `
+                    <span class="domain-name">${word.word}.com</span>
+                    <span class="status-badge">${word.available ? 'Available' : 'Taken'}</span>
+                `;
+                resultsDiv.appendChild(div);
+            }
+        } catch (error) {
+            resultsDiv.innerHTML = '<div class="loading">Error generating names. Please try again.</div>';
+        }
+    }
+    </script>
+</body>
+</html>

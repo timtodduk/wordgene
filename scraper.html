@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UK Business Email Scraper</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        select {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #fff;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            cursor: pointer;
+        }
+
+        select option {
+            background: #1e3c72;
+            color: white;
+        }
+
+        .results {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: #333;
+        }
+
+        .business-card {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2a5298;
+        }
+
+        .business-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .business-email {
+            color: #2a5298;
+            text-decoration: none;
+        }
+
+        .business-source {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        button {
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 0 5px;
+        }
+
+        button:hover {
+            background: #1e3c72;
+        }
+
+        .export-btn {
+            background: #28a745;
+        }
+
+        .export-btn:hover {
+            background: #218838;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        .stats {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .business-card .industry {
+            color: #2a5298;
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        .business-card .region {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+
+        #downloadLink {
+            display: none;
+        }
+
+        @media (max-width: 640px) {
+            .filters {
+                flex-direction: column;
+            }
+            
+            select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>UK Business Email Scraper</h1>
+        
+        <div class="filters">
+            <select id="regionSelect">
+                <option value="all">All UK</option>
+                <option value="england">England</option>
+                <option value="scotland">Scotland</option>
+                <option value="wales">Wales</option>
+                <option value="northern_ireland">Northern Ireland</option>
+            </select>
+
+            <select id="industrySelect">
+                <option value="all">All Industries</option>
+                <option value="technology">Technology</option>
+                <option value="retail">Retail</option>
+                <option value="manufacturing">Manufacturing</option>
+                <option value="services">Services</option>
+                <option value="finance">Finance</option>
+                <option value="construction">Construction</option>
+                <option value="hospitality">Hospitality</option>
+            </select>
+        </div>
+
+        <div class="controls">
+            <button onclick="startScraping()">Start Scraping</button>
+            <button onclick="exportToCSV()" class="export-btn">Export to CSV</button>
+        </div>
+
+        <div id="stats" class="stats"></div>
+        <div id="results" class="results">
+            <div class="loading">Select region and industry, then click "Start Scraping"...</div>
+        </div>
+    </div>
+
+    <a id="downloadLink"></a>
+
+    <script>
+        let businessData = [];
+
+        async function startScraping() {
+            const region = document.getElementById('regionSelect').value;
+            const industry = document.getElementById('industrySelect').value;
+            const resultsDiv = document.getElementById('results');
+            const statsDiv = document.getElementById('stats');
+            
+            resultsDiv.innerHTML = '<div class="loading">Scraping business emails...</div>';
+            
+            try {
+                const response = await fetch(`scraper.php?region=${region}&industry=${industry}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    businessData = data.businesses;
+                    displayStats(data);
+                    displayResults(data.businesses);
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = '<div class="loading">Error occurred while scraping. Please try again.</div>';
+            }
+        }
+
+        function displayStats(data) {
+            const statsDiv = document.getElementById('stats');
+            statsDiv.innerHTML = `Found ${data.count} businesses in ${data.region.replace('_', ' ')} ${data.industry !== 'all' ? `(${data.industry} industry)` : ''}`;
+        }
+
+        function displayResults(businesses) {
+            const resultsDiv = document.getElementById('results');
+            
+            if (businesses.length === 0) {
+                resultsDiv.innerHTML = '<div class="loading">No businesses found.</div>';
+                return;
+            }
+
+            resultsDiv.innerHTML = businesses.map(business => `
+                <div class="business-card">
+                    <div class="business-name">${business.name}</div>
+                    <div class="industry">${business.industry}</div>
+                    <a href="mailto:${business.email}" class="business-email">${business.email}</a>
+                    <div class="business-source">Source: ${business.source}</div>
+                    <div class="region">${business.region.replace('_', ' ')}</div>
+                </div>
+            `).join('');
+        }
+
+        function exportToCSV() {
+            if (businessData.length === 0) {
+                alert('No data to export. Please scrape some data first.');
+                return;
+            }
+
+            const csv = [
+                ['Business Name', 'Email', 'Industry', 'Region', 'Source'],
+                ...businessData.map(business => [
+                    business.name,
+                    business.email,
+                    business.industry,
+                    business.region,
+                    business.source
+                ])
+            ].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.getElementById('downloadLink');
+            link.setAttribute('href', url);
+            link.setAttribute('download', `uk_businesses_${new Date().toISOString().split('T')[0]}.csv`);
+            link.click();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# XAMPP specific
+xampp/
+htdocs/
+tmp/
+logs/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Composer
+/vendor/
+composer.lock
+
+# Node modules
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build directories
+/dist/
+/build/
+
+# Cache directories
+/cache/
+*.cache 
