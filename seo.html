@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Disulo - SEO Analysis Tools</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            min-height: 100vh;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #718096;
+            margin-bottom: 30px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-card h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .tool-card p {
+            color: #718096;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="url"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="url"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #4299e1;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            background: #4299e1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        button:hover {
+            background: #3182ce;
+            transform: translateY(-1px);
+        }
+
+        .results {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-top: 30px;
+        }
+
+        .metric {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .metric p {
+            color: #4a5568;
+        }
+
+        .score {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .good {
+            background: #c6f6d5;
+            color: #2f855a;
+        }
+
+        .fair {
+            background: #fefcbf;
+            color: #975a16;
+        }
+
+        .poor {
+            background: #fed7d7;
+            color: #c53030;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .nav-links a {
+            color: #4299e1;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #ebf8ff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #718096;
+            margin-top: 40px;
+        }
+
+        .contact {
+            margin-top: 20px;
+        }
+
+        .contact a {
+            color: #4299e1;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #718096;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #4299e1;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            color: #718096;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .github-download {
+            margin-top: 20px;
+        }
+
+        .donate-btn {
+            background: #4299e1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .donate-btn:hover {
+            background: #3182ce;
+            transform: translateY(-1px);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #718096;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Disulo</h1>
+            <p class="subtitle">SEO Analysis Tools</p>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="keywords.html">Keyword Tools</a>
+                <a href="scraper.html">Web Scraper</a>
+                <a href="shortener.html">URL Shortener</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </header>
+
+        <div class="tools-grid">
+            <div class="tool-card">
+                <h3>Meta Tag Analyzer</h3>
+                <p>Analyze your webpage's meta tags and get recommendations for improvement.</p>
+                <div class="input-group">
+                    <input type="url" id="metaUrl" placeholder="Enter URL to analyze">
+                </div>
+                <button onclick="analyzeMetaTags()">Analyze Meta Tags</button>
+            </div>
+
+            <div class="tool-card">
+                <h3>Keyword Density Checker</h3>
+                <p>Check the keyword density of your content and get optimization suggestions.</p>
+                <div class="input-group">
+                    <textarea id="keywordContent" placeholder="Paste your content here"></textarea>
+                </div>
+                <button onclick="checkKeywordDensity()">Check Density</button>
+            </div>
+
+            <div class="tool-card">
+                <h3>Readability Analyzer</h3>
+                <p>Analyze your content's readability score and get improvement tips.</p>
+                <div class="input-group">
+                    <textarea id="readabilityContent" placeholder="Paste your content here"></textarea>
+                </div>
+                <button onclick="analyzeReadability()">Analyze Readability</button>
+            </div>
+        </div>
+
+        <div id="results" class="results" style="display: none;">
+            <div id="metaResults"></div>
+            <div id="keywordResults"></div>
+            <div id="readabilityResults"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Disulo. All rights reserved.</p>
+        <p class="contact">Contact: <a href="mailto:tim@adaywithtim.com">tim@adaywithtim.com</a></p>
+        <div class="social-links">
+            <a href="https://twitter.com/adaywithtim" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-twitter"></i> @adaywithtim
+            </a>
+        </div>
+        <div class="footer-links">
+            <a href="terms.html">Terms of Service</a> | <a href="privacy.html">Privacy Policy</a>
+        </div>
+        <div class="github-download">
+            <form action="https://www.paypal.com/donate" method="post" target="_blank">
+                <input type="hidden" name="business" value="tim@soundsandstage.com">
+                <input type="hidden" name="no_recurring" value="0">
+                <input type="hidden" name="item_name" value="Support Disulo Development">
+                <input type="hidden" name="currency_code" value="USD">
+                <button type="submit" class="donate-btn">
+                    <i class="fab fa-paypal"></i> Support Development
+                </button>
+            </form>
+        </div>
+    </footer>
+
+    <script>
+        async function analyzeMetaTags() {
+            const url = document.getElementById('metaUrl').value;
+            if (!url) {
+                alert('Please enter a URL');
+                return;
+            }
+
+            const resultsDiv = document.getElementById('metaResults');
+            resultsDiv.innerHTML = '<div class="loading">Analyzing meta tags...</div>';
+            document.getElementById('results').style.display = 'block';
+
+            try {
+                const response = await fetch('seo.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        type: 'meta',
+                        url: url 
+                    })
+                });
+
+                const data = await response.json();
+                displayMetaResults(data);
+            } catch (error) {
+                resultsDiv.innerHTML = '<div class="loading">Error analyzing meta tags. Please try again.</div>';
+            }
+        }
+
+        function displayMetaResults(data) {
+            const resultsDiv = document.getElementById('metaResults');
+            resultsDiv.innerHTML = `
+                <div class="metric">
+                    <h4>Title Tag <span class="score ${getScoreClass(data.titleScore)}">${data.titleScore}/10</span></h4>
+                    <p>${data.title}</p>
+                    <p>${data.titleRecommendations}</p>
+                </div>
+                <div class="metric">
+                    <h4>Meta Description <span class="score ${getScoreClass(data.descriptionScore)}">${data.descriptionScore}/10</span></h4>
+                    <p>${data.description}</p>
+                    <p>${data.descriptionRecommendations}</p>
+                </div>
+                <div class="metric">
+                    <h4>Heading Structure <span class="score ${getScoreClass(data.headingsScore)}">${data.headingsScore}/10</span></h4>
+                    <p>${data.headingsRecommendations}</p>
+                </div>
+            `;
+        }
+
+        async function checkKeywordDensity() {
+            const content = document.getElementById('keywordContent').value;
+            if (!content) {
+                alert('Please enter some content');
+                return;
+            }
+
+            const resultsDiv = document.getElementById('keywordResults');
+            resultsDiv.innerHTML = '<div class="loading">Analyzing keyword density...</div>';
+            document.getElementById('results').style.display = 'block';
+
+            try {
+                const response = await fetch('seo.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        type: 'keywords',
+                        content: content 
+                    })
+                });
+
+                const data = await response.json();
+                displayKeywordResults(data);
+            } catch (error) {
+                resultsDiv.innerHTML = '<div class="loading">Error analyzing keyword density. Please try again.</div>';
+            }
+        }
+
+        function displayKeywordResults(data) {
+            const resultsDiv = document.getElementById('keywordResults');
+            let keywordsHtml = '<div class="metric"><h4>Top Keywords</h4>';
+            
+            data.topKeywords.forEach(keyword => {
+                keywordsHtml += `
+                    <p>${keyword.word}: ${keyword.density}% density</p>
+                `;
+            });
+
+            keywordsHtml += `
+                </div>
+                <div class="metric">
+                    <h4>Recommendations</h4>
+                    <p>${data.recommendations}</p>
+                </div>
+            `;
+
+            resultsDiv.innerHTML = keywordsHtml;
+        }
+
+        async function analyzeReadability() {
+            const content = document.getElementById('readabilityContent').value;
+            if (!content) {
+                alert('Please enter some content');
+                return;
+            }
+
+            const resultsDiv = document.getElementById('readabilityResults');
+            resultsDiv.innerHTML = '<div class="loading">Analyzing readability...</div>';
+            document.getElementById('results').style.display = 'block';
+
+            try {
+                const response = await fetch('seo.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        type: 'readability',
+                        content: content 
+                    })
+                });
+
+                const data = await response.json();
+                displayReadabilityResults(data);
+            } catch (error) {
+                resultsDiv.innerHTML = '<div class="loading">Error analyzing readability. Please try again.</div>';
+            }
+        }
+
+        function displayReadabilityResults(data) {
+            const resultsDiv = document.getElementById('readabilityResults');
+            resultsDiv.innerHTML = `
+                <div class="metric">
+                    <h4>Readability Score <span class="score ${getScoreClass(data.score)}">${data.score}/10</span></h4>
+                    <p>${data.level}</p>
+                </div>
+                <div class="metric">
+                    <h4>Statistics</h4>
+                    <p>Average sentence length: ${data.avgSentenceLength} words</p>
+                    <p>Average word length: ${data.avgWordLength} characters</p>
+                    <p>Total words: ${data.totalWords}</p>
+                </div>
+                <div class="metric">
+                    <h4>Recommendations</h4>
+                    <p>${data.recommendations}</p>
+                </div>
+            `;
+        }
+
+        function getScoreClass(score) {
+            if (score >= 7) return 'good';
+            if (score >= 4) return 'fair';
+            return 'poor';
+        }
+    </script>
+</body>
+</html> 
